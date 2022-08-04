@@ -1,0 +1,34 @@
+===== two systemd tool ====
+1 systemctl
+2 journalctl for log monitoring 
+
+
+
+
+first check the service status ----===
+using command==>
+   systemctl status sample.service
+
+restart service ===>
+  systemctl restart sample.service
+
+put the systemd entry for the service=====>
+   sudo systemctl edit sample.service --full
+	 [Unit]
+	 Description=A template service unit file. Use this to 	 create a service
+
+	[Service]
+	ExecStart=/bin/bash /root/sample_script.sh
+	Restart=always
+	[Install]
+	WantedBy=multi-user.target
+     systemctl restart sample.service
+     systemctl reload sample.service
+     systemctl enable sample.service
+
+===reload service unit file===
+sudo systemctl daemon-reload
+
+**How would you check the errors encountered earlier when the sample service did not have a valid service section?
+
+      journalctl -u sample.service
